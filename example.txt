@@ -1,0 +1,84 @@
+Uso: grep [OPÇÃO]... PADRÃO [ARQUIVO]...
+Busca por PADRÃO em cada ARQUIVO ou entrada padrão.
+PADRÃO é, por padrão, uma expressão regular básica (BRE).
+Exemplo: grep -i "olá, mundo" menu.h main.c
+
+Seleção e interpretação de expressão regular:
+  -E, --extended-regexp     PADRÃO é uma expressão regular estendida
+  -F, --fixed-strings       PADRÃO são textos separados por nova linha
+  -G, --basic-regexp        PADRÃO é uma expressão regular básica
+  -P, --perl-regexp         PADRÃO é uma expressão regular de sintaxe Perl
+  -e, --regexp=PADRÃO       usa PADRÃO como uma expressão regular
+  -f, --file=ARQUIVO        obtém PADRÃO do ARQUIVO
+  -i, --ignore-case         ignora diferenças entre maiúsculas/minúsculas
+  -w, --word-regexp         força PADRÃO a coincidir só com palavras inteiras
+  -x, --line-regexp         força PADRÃO a coincidir só com linhas inteiras
+  -z, --null-data           uma linha de dados termina com byte 0, e não com
+                              caractere de nova linha
+
+Miscelânea:
+  -s, --no-messages         suprime mensagens de erro
+  -v, --invert-match        seleciona somente linhas não coincidentes
+  -V, --version             mostra informações sobre versão e sai
+      --help                exibe esta ajuda e sai
+      --mmap                ignorada por razões de retrocompatibilidade
+
+Controle de saída:
+  -m, --max-count=NÚM       interrompe depois de NÚM ocorrências
+  -b, --byte-offset         emite a posição em bytes na linha de saída
+  -n, --line-number         emite o número da linha na linha de saída
+      --line-buffered       libera a saída a cada linha
+  -H, --with-filename       emite o nome do arquivo para cada ocorrência
+  -h, --no-filename         inibe o nome de arquivo na saída
+      --label=RÓTULO        usa RÓTULO para identificar a entrada padrão
+  -o, --only-matching       mostra apenas a parte da linha que coincide com
+                              o PADRÃO
+  -q, --quiet, --silent     inibe todas as mensagens normais de saída
+      --binary-files=TIPO   assume que arquivos binários são TIPO
+                             TIPO pode ser \"binary\" (binário), \"text\" (texto),
+                             ou \"without-match\" (nunca coincide)
+  -a, --text                equivalente a --binary-files=text
+  -I                        equivalente a --binary-files=without-match
+  -d, --directories=AÇÃO    como tratar diretórios;
+                             AÇÃO pode ser \"read\" (ler), \"recurse\" (recursivo),
+                             ou \"skip\" (ignorar)
+  -D, --devices=AÇÃO        como tratar dispositivos, FIFOs e soquetes;
+                             AÇÃO pode ser \"read\" (ler) ou \"skip\" (ignorar)
+  -R, -r, --recursive       equivalente a --directories=recurse
+      --include=PADRÃO_ARQ  busca apenas em arquivos que casam com PADRÃO_ARQ
+      --exclude=PADRÃO_ARQ  ignora arquivos e diretórios que casam com
+                              PADRÃO_ARQ
+      --exclude-from=ARQUI  ignora arquivos que casam com algum padrão escrito
+                              em ARQUIvo
+      --exclude-dir=PADRÃO  diretórios que casam com PADRÃO serão ignorados
+  -L, --files-without-match emite os nomes somente dos ARQUIVOs que não casam
+                              com o padrão
+  -l, --files-with-matches  emite os nomes somente dos ARQUIVOs que casam com
+                              o padrão
+  -c, --count               emite a contagem de linhas por ARQUIVO que casam
+                              com o padrão
+  -T, --initial-tab         alinha por tabulação (se necessário)
+  -Z, --null                emite byte 0 depois do nome do ARQUIVO
+
+Controle de contexto:
+  -B, --before-context=NÚM  emite NÚM linhas de contexto anteriores
+  -A, --after-context=NÚM   emite NÚM linhas de contexto posteriores
+  -C, --context=NÚM         emite NÚM linhas de contexto de saída
+  -NÚM                      o mesmo que --context=NÚM
+      --color[=QUANDO],
+      --colour[=QUANDO]     usa marcadores para destacar o texto coincidente;
+                              QUANDO pode ser "always" (sempre), "never"
+                              (nunca) ou "auto" (automático).
+  -U, --binary              não elimina caracteres CR no fim de linha (MSDOS)
+  -u, --unix-byte-offsets   relata posições como se não existissem CRs (MSDOS)
+
+"egrep" significa "grep -E". "fgrep" significa "grep -F".
+Invocação direta tanto por "egrep" como por "fgrep" está obsoleta.
+Se não informado o ARQUIVO, ou se ARQUIVO é -, lê da entrada padrão. Se menos
+que dois ARQUIVOs forem especificados, assume -h. O estado de saída é 0 se o
+PADRÃO for encontrado, 1 caso contrário; se ocorrer algum erro ou -q não foi
+especificado, o estado de saída é 2.
+
+Relate os problemas para: bug-grep@gnu.org
+Página do GNU Grep: <http://www.gnu.org/software/grep/>
+Ajuda geral sobre uso de software GNU: <http://www.gnu.org/gethelp/>
